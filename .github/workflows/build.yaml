@@ -19,5 +19,7 @@ jobs:
 
       - name: Compile, build and push
         run: |
-          #### AUFGABE COMPILE, DOCKER BUILD UND PUSH
-            # hier ist Platz für maven package und docker build
+          ./mvnw package
+          docker build --tag ghcr.io/zakiroov/pet-clinic:latest -f Dockerfile .
+          docker login --username zakiroov --password $GITHUB_ACCESSTOKEN ghcr.io
+          docker push ghcr.io/zakiroov/pet-clinic:latest
